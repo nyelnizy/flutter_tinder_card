@@ -442,7 +442,7 @@ class ProfileCard extends StatefulWidget {
 class _ProfileCardState extends State<ProfileCard> {
   Widget _buildBackground() {
     return new PhotoBrowser(
-      photoAssetPaths: widget.profile.photos,
+      photos: widget.profile.photos,
       visiblePhotoIndex: 0,
     );
   }

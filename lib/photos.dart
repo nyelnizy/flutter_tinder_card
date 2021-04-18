@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PhotoBrowser extends StatefulWidget {
-  final List<String> photoAssetPaths;
+  final List<Widget> photos;
   final int visiblePhotoIndex;
 
-  PhotoBrowser({this.photoAssetPaths, this.visiblePhotoIndex});
+  PhotoBrowser({this.photos, this.visiblePhotoIndex});
 
   @override
   _PhotoBrowserState createState() => _PhotoBrowserState();
@@ -37,7 +37,7 @@ class _PhotoBrowserState extends State<PhotoBrowser> {
 
   void _nextImage() {
     setState(() {
-      visiblePhotoIndex = visiblePhotoIndex < widget.photoAssetPaths.length - 1
+      visiblePhotoIndex = visiblePhotoIndex < widget.photos.length - 1
           ? visiblePhotoIndex + 1
           : visiblePhotoIndex;
     });
@@ -79,17 +79,14 @@ class _PhotoBrowserState extends State<PhotoBrowser> {
       fit: StackFit.expand,
       children: <Widget>[
         // Photo
-        new Image.asset(
-          widget.photoAssetPaths[visiblePhotoIndex],
-          fit: BoxFit.cover,
-        ),
+         widget.photos[visiblePhotoIndex],
         // Photo indicator
         new Positioned(
           top: 0.0,
           left: 0.0,
           right: 0.0,
           child: new SelectedPhotoIndicator(
-            photoCount: widget.photoAssetPaths.length,
+            photoCount: widget.photos.length,
             visiblePhotoIndex: visiblePhotoIndex,
           ),
         ),
